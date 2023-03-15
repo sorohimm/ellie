@@ -2,13 +2,8 @@ package ellie
 
 import (
 	"context"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
 
 	"github.com/sorohimm/misc/grace"
-	"github.com/sorohimm/misc/log"
-
-	"github.com/sorohimm/ellie/internal/service/ellie/config"
 )
 
 func NewService() *Service {
@@ -34,22 +29,11 @@ func (o *Service) Init(name, version, built string) {
 }
 
 func (o *Service) initLogger(ctx context.Context, name, version, built string) context.Context {
-	appConf := config.FromContext(ctx)
-
-	// init logger
-	l, err := log.NewZap(appConf.Log.Level, appConf.Log.EncType)
-	if err != nil {
-		stdl.Fatal(err)
-	}
-	logger := l.WithOptions(
-		zap.AddStacktrace(zapcore.DPanicLevel)).
-		Sugar().
-		With("v", version, "built", built, "app", name)
-	return log.CtxWithLogger(ctx, logger.Desugar())
+	return nil
 }
 
 func (o *Service) initAppConfig(ctx context.Context) context.Context {
-
+	return nil
 }
 
 func (o *Service) run(ctx context.Context) {
