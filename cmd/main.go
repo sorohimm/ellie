@@ -7,5 +7,5 @@ import (
 var version, buildTime string
 
 func main() {
-	service.NewService().Init("pythia-apigw", version, buildTime)
+	service.NewService().Init("ellie", version, buildTime)
 }
