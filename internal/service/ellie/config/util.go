@@ -1,6 +1,9 @@
 package config
 
-import "context"
+import (
+	"context"
+	"strings"
+)
 
 type confKey struct{} // or exported to use outside the package
 
@@ -17,4 +20,15 @@ func FromContext(ctx context.Context) *Config {
 
 func NewDefaultConfig() *Config {
 	return &Config{}
+}
+
+func splitStringBy(str, div, cutset string) []string {
+	ret := make([]string, 0)
+	for _, s := range strings.Split(str, div) {
+		cs := strings.Trim(s, cutset)
+		if len(cs) > 0 {
+			ret = append(ret, cs)
+		}
+	}
+	return ret
 }
